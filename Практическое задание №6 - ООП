@@ -1,0 +1,75 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+class Worker{
+public:
+int experience;
+int hourly_wag;
+int hours;
+string name;
+Worker (){
+string n;
+int e;
+int w;
+int h;
+cout « "Enter worker's name: ";
+cin » n;
+cout « endl;
+cout « "Enter worker's experience: ";
+cin » e;
+cout « endl;
+cout « "Enter worker's hourly wag: ";
+cin » w;
+cout « endl;
+cout « "Enter how much hours " « n « " has worked: ";
+cin » h;
+cout « endl;
+name = n;
+experience = e;
+hourly_wag = w;
+hours = h;
+}
+int Salary() {
+int s = hourly_wag * hours;
+return(s);
+}
+double Premy() {
+float procents;
+if (experience < 1)
+procents = 0;
+else if (experience < 3)
+procents = 0.05;
+else if (experience < 5)
+procents = 0.08;
+else
+procents = 0.15;
+double p = this->Salary() * procents;
+return p;
+}
+void ConsoleWrite() {
+cout « name « endl;
+cout « "Experience is " « experience « endl;
+cout « "Hourly wage is "« hourly_wag « endl;
+cout « name « " has worked " « hours « endl;
+cout « "Salary is " « this->Salary() « endl;
+cout « "Premy is " « this->Premy() « endl;
+}
+void FileWrite() {
+ofstream F;
+F.open("D:\\Workers.txt");
+F « name « endl;
+F « "Experience is " « experience « endl;
+F « "Hourly wage is " « hourly_wag « endl;
+F « name « " has worked " « hours « endl;
+F « "Salary is " « this->Salary() « endl;
+F « "Premy is " « this->Premy() « endl;
+cout « "Information about " « name « " was written in file 'Workers.txt";
+}
+};
+int main()
+{
+Worker obj;
+obj.ConsoleWrite();
+obj.FileWrite();
+}
